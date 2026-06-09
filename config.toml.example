@@ -1,0 +1,45 @@
+# ====================================
+# agent-wecom-bot Configuration
+# ====================================
+
+[wecom]
+mode = "websocket"
+bot_id = "your-bot-id"
+bot_secret = "your-bot-secret"
+
+[agent]
+type = "claudecode"
+work_dir = "/path/to/project/workspace"
+model = "claude-sonnet-4-6"
+
+# 中转站配置（如使用 GLM 等第三方模型 via 中转站 API）
+# 设置后子进程会传入 ANTHROPIC_BASE_URL / ANTHROPIC_API_KEY 环境变量
+# api_base_url = "https://your-relay.com/anthropic"
+# api_key = "your-relay-api-key"
+
+allowed_tools = ["Bash", "Read", "Write", "Edit", "Grep", "Glob", "WebFetch"]
+permission_mode = "bypassPermissions"
+system_prompt = """
+你是一个企业微信上的 AI 助手。
+- 使用中文回答
+- 回答简洁实用
+- 不要输出思考过程，直接给出最终答案
+- 需要操作文件或执行命令时直接执行
+"""
+
+[session]
+ttl_minutes = 30
+cleanup_interval_minutes = 5
+
+[pool]
+max_concurrent = 10
+max_idle_seconds = 1800
+
+[behavior]
+allowed_users = []
+message_timeout_seconds = 120
+max_turns_per_session = 20
+
+# Claude Code cron 任务回调推送端口
+# Claude Code 创建的定时任务完成后，可通过 http://localhost:{push_port}/api/push 推送结果
+push_port = 9090

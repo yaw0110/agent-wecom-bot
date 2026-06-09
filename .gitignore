@@ -1,0 +1,22 @@
+# Binaries
+wecom-bot
+wecom-bot.exe
+cmd/wecom-bot/wecom-bot
+
+# Config
+config.toml
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+vendor/
+*.test
+*.out
